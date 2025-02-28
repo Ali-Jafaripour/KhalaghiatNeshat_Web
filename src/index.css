@@ -1,0 +1,66 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    min-height: 100vh; 
+    overflow: auto;
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  body {
+    display: flex; 
+    flex-direction: column;
+  }
+  main {
+    flex-grow: 1;
+    overflow-y: auto;
+  };
+
+
+  @font-face {
+		font-family: Potk;
+		font-style: normal;
+		font-weight: 300;
+		src:
+			url('assets/fonts/Potk/Font.ttf') format('ttf');
+	}
+
+  @font-face {
+		font-family: Peyda;
+		font-style: normal;
+		font-weight: 300;
+		src:
+			url('assets/fonts/woff/PeydaWeb-Light.woff') format('woff');
+	}
+	@font-face {
+		font-family: Peyda;
+		font-style: normal;
+		font-weight: 400;
+		src:
+			url('assets/fonts/woff/PeydaWeb-Light.woff') format('woff');
+	}
+	@font-face {
+		font-family: Peyda;
+		font-style: normal;
+		font-weight: 500;
+		src:
+			url('assets/fonts/woff/PeydaWeb-Medium.woff') format('woff');
+	}
+	@font-face {
+		font-family: Peyda;
+		font-style: normal;
+		font-weight: 600;
+		src:
+			url('assets/fonts/woff/PeydaWeb-Semibold.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: Peyda;
+		font-style: normal;
+		font-weight: 800;
+		src:
+			url('assets/fonts/woff/PeydaWeb-ExtraBold.woff') format('woff');
+	}
