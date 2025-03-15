@@ -38,24 +38,24 @@ export const FlipWords = ({
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+        transition={{ type: "spring", stiffness: 90, damping: 40 }}
         exit={{
           opacity: 0,
-          y: -40,
-          x: 40,
+          y: -30,
+          x: -30,
           filter: "blur(8px)",
-          scale: 2,
+          scale: 3,
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-[#d6ba9a]  px-2",
+          "z-10 inline-block relative text-left text-neutral-900 dark:text-primary-3  px-2",
           className
         )}
         key={currentWord}
         dir="rtl" // اضافه کردن جهت راست به چپ
       >
         <motion.span
-          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+          initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.3 }}
           className="inline-block whitespace-nowrap"

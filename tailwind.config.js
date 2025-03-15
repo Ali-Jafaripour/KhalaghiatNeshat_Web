@@ -14,6 +14,7 @@ export default {
 		  primary: {
 			1:'#fdc380',
 			2:'#ff6000',
+			3:'#d6ba9a',
 			border:'#fab566',
 			placeholder:'#918270d0',
 		  },
