@@ -1,77 +1,69 @@
-Creativity & Vitality Event 🌟
 
-This project provides a modern and responsive website for the Creativity & Vitality university event.
+# Khalaghiat & Neshat Event 🌟
 
-Technologies Used 🔥
+This project provides a modern and responsive website for the **Creativity & Vitality** university event.
 
-React + TypeScript ⚛️
+## Technologies Used 🔥
+- React + TypeScript ⚛️
+- Vite ⚡
+- TailwindCSS 🎯
+- ShadCN 🌈
 
-Vite ⚡
+## Features 📌
+- Modern responsive UI
+- Online registration form
+- Countdown timer for the event
+- Event information and schedule
+- Social media integration
 
-TailwindCSS 🎯
-
-ShadCN 🌈
-
-Features 📌
-
-Modern responsive UI
-
-Online registration form
-
-Countdown timer for the event
-
-Event information and schedule
-
-Social media integration
-
-Requirements
-
+## Requirements
 Make sure you have the following installed:
+- Node.js (version 16 or higher)
+- npm or yarn
 
-Node.js (version 16 or higher)
-
-npm or yarn
-
-Installation
-
+## Installation
+```bash
 # Install dependencies with npm
 npm install
 
 # Or with yarn
 yarn install
+```
 
-Running the Project 🚀
-
+## Running the Project 🚀
+```bash
 npm run dev
 # Or
 yarn dev
-
+```
 Access the website at:
 http://localhost:5173
 
-Building for Production 🎯
-
+## Building for Production 🎯
+```bash
 npm run build
 # Or
 yarn build
+```
 
-Environment Variables ⚙️
-
-Create a .env file in the root directory and add:
-
+## Environment Variables ⚙️
+Create a `.env` file in the root directory and add:
+```env
 VITE_API_URL=https://example.com/api
 VITE_APP_NAME=CreativityEvent
+```
 
-Contribution 💪
+## Contribution 💪
+1. Fork the project 🍴
+2. Create a new branch (`feature/my-new-feature`)
+3. Commit your changes
+4. Create a pull request
 
-Fork the project 🍴
-
-Create a new branch (feature/my-new-feature)
-
-Commit your changes
-
-Create a pull request
-
-License 📄
-
+## License 📄
 This project is licensed under the MIT License.
+
+
+If your main branch is named **master**, replace `main` with `master` in the last command.
+
+Let's create a joyful and creative experience! 🌈🚀
+```
