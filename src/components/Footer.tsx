@@ -16,12 +16,10 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative font-Peyda">
-     <div className="relative h-[30%] w-full ">
-      <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_100%)]"></div>
+    <footer className="relative font-Peyda p-10 pt-10 mt-28   [background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_100%)]">
+      <div className="relative  w-full ">
 
-        
-        <div className="relative z-10 container mx-auto px-4 py-12">
+        <div className="relative z-10 container mx-auto px-4 pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-primary-3">
             
             <motion.div 
@@ -101,8 +99,13 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <p>© {new Date().getFullYear()} انجمن علمی کامپیوتر. تمامی حقوق محفوظ است.</p>
+            <br/>
+            <p  className='text-xs'>Developed by Δlι</p>
+
           </motion.div>
+
         </div>
+
       </div>
     </footer>
   );

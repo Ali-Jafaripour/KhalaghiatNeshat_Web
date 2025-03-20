@@ -8,14 +8,14 @@ import { motion } from 'framer-motion';
 
 const HomePage: React.FC = () => {
   return (
-    <>
+    <div>
       <Header />
       <Test/>
       <div className="h-auto w-full py-2 px-2">
         <TimelineDemo />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
