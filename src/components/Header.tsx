@@ -40,11 +40,11 @@ const Header: React.FC = () => {
 
 
       <div className={clsx(" absolute h-full w-full", 
-        "lg:bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] lg:[background-size:20px_20px] lg:[mask-image:radial-gradient(ellipse_60%_70%_at_50%_40%,#0004_40%,transparent_100%)]",
+        "lg:bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] lg:[background-size:25px_25px] lg:[mask-image:radial-gradient(ellipse_60%_70%_at_50%_40%,#0003_40%,transparent_100%)]",
         "bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_40%,#0003_40%,transparent_100%)]",
         
         
-        )}></div>
+      )}></div>
 
 
         <div className={clsx(
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                 src="https://lottie.host/4f13aca5-beaf-487c-b5eb-430fc455ea03/OM7reVLeGl.lottie"
                 loop
                 autoplay
-                className='lg:h-96 sm:h-80 h-52  w-auto z-0'
+                className=' md:h-96 h-52 z-0'
               />
 
               <FlipWordsDemo/> 
