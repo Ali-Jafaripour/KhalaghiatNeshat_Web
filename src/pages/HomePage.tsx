@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Header } from '../components';
+import { Footer, Header,Test } from '../components';
 import { Timeline } from '../components/ui/timeline';
 
 
@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Header />
-
+      <Test/>
       <div className="h-auto w-full py-2 px-2">
         <TimelineDemo />
       </div>

@@ -22,7 +22,6 @@ export function FlipWordsDemo() {
     </div>
 
    
-    
   </div>
 </div>
 
@@ -69,7 +68,6 @@ const Header: React.FC = () => {
             </div>    
             <div className='lg:flex lg:flex-row lg:w-full lg:justify-center'>
 
-               
             
               <div className='flex justify-end lg:justify-center '>
                   <button 
