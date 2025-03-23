@@ -1,7 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const authController = require("./../controller/auth")
-router.post("/sms/send",authController.sendOTP)
+const validatePhone = require("../middlewares/validatePhone");
+
+
+router.post("/sms/send",validatePhone,authController.sendOTP)
 router.post("/sms/verify",authController.verifyOTP)
 
 
