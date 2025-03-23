@@ -27,11 +27,11 @@ module.exports.sendOTP = async (req, res) => {
         }
       }
     );
-    await OtpModel.create({
-      phone:req.body.phone,
-      code,
-      expireAt,
-    });
+    await OtpModel.findOneAndUpdate(
+      { phone:req.body.phone }, 
+      { code, expireAt,uses:0 }, 
+      { upsert: true, new: true ,setDefaultsOnInsert: true}
+    );
     return res.json({ message: "OTP Code sent successfully :))" });
   } catch (err) {
     console.error("Error:", err);
