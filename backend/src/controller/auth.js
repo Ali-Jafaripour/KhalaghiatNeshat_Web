@@ -84,7 +84,8 @@ module.exports.signUp = async (req, res) => {
       phone:req.body.phone,
       nationalCode:req.body.nationalCode,
       email:req.body.email,
-      gender:req.body.gender
+      gender:req.body.gender,
+      stuNumber:req.body.stuNumber,
     })
     return res.status(201).json({ message: "User registered successfully" });
   }
