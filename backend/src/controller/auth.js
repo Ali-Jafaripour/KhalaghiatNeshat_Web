@@ -11,11 +11,11 @@ module.exports.sendOTP = async (req, res) => {
         url: "http://ippanel.com/api/select",
         body: {
           op: "pattern",
-          user: "u09376717805",
-          pass: "Faraz@2005854450111605",
-          fromNum: "3000505",
+          user: process.env.SMS_USERNAME,
+          pass: process.env.SMS_PASSWORD,
+          fromNum: process.env.SMS_FROM_NUMBER,
           toNum: req.body.phone,
-          patternCode: "fhnywkwtfm3ed2d",
+          patternCode: process.env.SMS_PATTERN_CODE,
           inputData: [{ "verification-code": code }],
         },
         json: true,
@@ -70,3 +70,7 @@ module.exports.verifyOTP = async (req, res) => {
       return res.status(409).json({ message: "Code is not correct !!" });
     }
 };
+
+module.exports.signUp = async (req, res) => {
+  
+}
