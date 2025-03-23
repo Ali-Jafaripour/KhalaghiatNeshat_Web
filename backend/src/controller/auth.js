@@ -48,7 +48,9 @@ module.exports.verifyOTP = async (req, res) => {
         uses:1
       }
     });
+    
     if (otp) {
+
       const date = new Date();
       const now = date.getTime();
       if (otp.expireAt < now) {
@@ -57,7 +59,7 @@ module.exports.verifyOTP = async (req, res) => {
       else if (otp.uses > 4) {
         return res.status(408).json({ message: "Code is max use !!" });
       }
-      else if (otp.code !== req.body.code) {
+      else if (otp.code != req.body.code) {
         return res.status(409).json({ message: "Code is not correct !!" });
       }
       else{
