@@ -1,5 +1,6 @@
 const request = require("request");
 const OtpModel = require("./../models/otp");
+const usersModel = require("./../models/users");
 
 module.exports.sendOTP = async (req, res) => {
   const code = Math.floor(Math.random() * 99999);
@@ -72,5 +73,19 @@ module.exports.verifyOTP = async (req, res) => {
 };
 
 module.exports.signUp = async (req, res) => {
-  
+  const existingUser = await usersModel.findOne({ phone: req.body.phone });
+  if (existingUser) {
+    return res.status(400).json({ message: "User already exists" });
+  }
+  else{
+    await usersModel.create({
+      firstName:req.body.firstName,
+      lastName:req.body.lastName,
+      phone:req.body.phone,
+      nationalCode:req.body.nationalCode,
+      email:req.body.email,
+      gender:req.body.gender
+    })
+    return res.status(201).json({ message: "User registered successfully" });
+  }
 }
