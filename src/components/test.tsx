@@ -37,7 +37,7 @@ const Test: React.FC = () => {
   useEffect(() => {
     if (isVisible) {
       const animateCounter = () => {
-        const duration = 9000;
+        const duration = 5000;
         const startTime = performance.now();
         const endCount = 100;
 
@@ -63,18 +63,19 @@ const Test: React.FC = () => {
 
   return (
     <div ref={componentRef} className="flex justify-center items-center  bg-transparent text-white">
-      {showAnimation && (
-        <DotLottieReact
-          src="https://lottie.host/fed3369a-1411-41e8-b7bb-b33aaea70d8a/PbKjIt09yz.lottie"
-          loop
-          autoplay
-          className='absolute -z-0 w-full'
-        />
-      )}
-      <h1 className="text-center z-10">
-        <span className="count block lg:text-[50vh] text-[17vh]  text-primary-2 font-Potk">{count}</span>
-        <p className='font-Potk text-primary-1'>تعداد ثبت نامی ها تا همین لحظه ! </p> 
-      </h1>
+      <div>
+        <h1 className="relative text-center z-30">
+          <span className="count block lg:text-[50vh] text-[17vh]  text-primary-2 font-Potk z-30">{count}</span>
+          <p className='font-Potk text-primary-1'>تعداد ثبت نامی ها تا همین لحظه ! </p> 
+        </h1>
+        {showAnimation && (
+          <DotLottieReact
+            src="https://lottie.host/fed3369a-1411-41e8-b7bb-b33aaea70d8a/PbKjIt09yz.lottie"
+            loop
+            autoplay
+            className='absolute top-[22.5%] lg:top-[20%] left-0 z-10 w-full' />
+        )}
+      </div>
     </div>
   );
 };
