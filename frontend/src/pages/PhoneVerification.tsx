@@ -10,7 +10,7 @@ const PhoneVerification: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     setError(""); // پاک کردن خطاهای قبلی
   
@@ -38,8 +38,30 @@ const PhoneVerification: React.FC = () => {
       setError("لطفاً یک شماره موبایل معتبر وارد کنید.");
       return;
     }
+    try{
+      const response = await fetch("http://localhost:4000/auth/sms/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: phoneNumber }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "مشکلی پیش آمد، لطفاً دوباره امتحان کنید.");
+      }
   
-    // اگر همه چیز درست بود، به صفحه بعدی برو
+      navigate("/verify-otp", { state: { phoneNumber } });
+  
+    }catch (error) {
+      if (error instanceof Error) {
+        setError(error.message); 
+      } else {
+        setError("مشکلی پیش آمده است."); 
+      }
+    }
+    
     navigate('/verify-otp', { state: { phoneNumber } });
   };
 
