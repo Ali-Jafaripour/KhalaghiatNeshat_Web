@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LottieIcon from "../Icon/LottieIcon";
 import phoneIcon from "../Icon/Calling V5.json";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 
 const PhoneVerification: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -49,18 +51,28 @@ const PhoneVerification: React.FC = () => {
               <LottieIcon animationData={phoneIcon} width={40} height={40} />
             </div>
           </div>
-
-          <div className="flex justify-center items-center">
-            <button 
-              className="z-10 lg:w-2/4 w-full font-Peyda h-fit inline-flex lg:px-3 px-4 lg:py-4 py-3 lg:text-xl lg:rounded-xl rounded-xl
-                animate-shimmer items-center justify-center border border-primary-1
-                bg-[linear-gradient(110deg,#101010,30%,#272727,50%,#101010)] 
-                bg-[length:190%_100%] text-primary-1 font-semibold
-                transition-colors focus:outline-none opacity-50 text-nowrap overflow-hidden">
-              ارسال کد تایید
-            </button>
+          <div>
+            <DotLottieReact
+                src="https://lottie.host/14a25ccb-a976-41ba-b554-56b65d549cdf/Pk1x16vKnn.lottie"
+                loop
+                autoplay
+            />
+            <div className="flex justify-center items-center">
+                <button 
+                className="z-10 lg:w-2/4 w-full font-Peyda h-fit inline-flex lg:px-3 px-4 lg:py-4 py-3 lg:text-xl lg:rounded-xl rounded-xl
+                    animate-shimmer items-center justify-center border border-primary-1
+                    bg-[linear-gradient(110deg,#101010,30%,#272727,50%,#101010)] 
+                    bg-[length:190%_100%] text-primary-1 font-semibold
+                    transition-colors focus:outline-none opacity-50 text-nowrap overflow-hidden">
+                ارسال کد تایید
+                </button>
+            </div>
           </div>
         </form>
+
+
+
+        
       </div>
 
       <div className="absolute inset-0 h-full w-full items-center px-5 py-24 [background:radial-gradient(250%_150%_at_50%_20%,#0000_35%,#ff6000_180%)] lg:[background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_190%)]"></div>

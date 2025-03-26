@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import LottieIcon from "../Icon/LottieIcon";
-import otpIcon from "../Icon/Calling V5.json";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 
 const OTPVerification: React.FC = () => {
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '']);
   const [error, setError] = useState('');
   const [timer, setTimer] = useState(120); // 2 minutes
   const navigate = useNavigate();
@@ -34,27 +34,37 @@ const OTPVerification: React.FC = () => {
     e.preventDefault();
     const otpString = otp.join('');
     
-    if (otpString.length !== 6) {
-      setError('لطفا کد 6 رقمی را وارد کنید');
+    if (otpString.length !== 5) {
+      setError('لطفا کد 5 رقمی را وارد کنید');
       return;
     }
 
     // Here you would typically verify the OTP with your API
     // For now, we'll just navigate to the signup page
-    navigate('/signup');
+    navigate('/Signup');
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
+
       <div className="absolute h-full w-full top-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_10%,#0001_40%,transparent_100%)]"></div>
 
       <div className="flex justify-center items-center mt-16">
         {error && <p className="text-red-500 text-center mb-4 font-Peyda font-bold">{error}</p>}
       </div>
 
-      <div className="z-20 absolute right-[6.5%] lg:right-[30%] top-[14%] lg:top-[20%] w-[87%] lg:w-[40%] p-8 rounded-2xl backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)]">
+      <div className="z-20 absolute right-[6.5%] lg:right-[30%] top-[20%] lg:top-[20%] w-[87%] lg:w-[40%] p-8 rounded-2xl backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)]">
         <h2 className="text-2xl font-semibold mb-6 text-center text-primary-2 font-Potk">تایید کد ارسال شده</h2>
-        <p className="text-center text-primary-1 font-Peyda mb-4">کد ارسال شده به شماره {phoneNumber} را وارد کنید</p>
+
+        <DotLottieReact
+            src="https://lottie.host/56fe9188-2e20-4a9a-8868-a8e0a18eacc0/WRx2NIWl7X.lottie"
+            loop
+            autoplay
+        />
+
+        <p className="text-center text-primary-1 font-Peyda mb-4 text-xs lg:text-base">
+          کد ارسال شده به شماره  <span className="font-Potk text-primary-3 text-sm lg:text-lg">{phoneNumber}</span>  را وارد کنید
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="flex justify-center gap-2">
@@ -79,7 +89,7 @@ const OTPVerification: React.FC = () => {
               ) : (
                 <button 
                   onClick={() => setTimer(120)}
-                  className="text-primary-2 underline"
+                  className="text-primary-2 underline font-bold"
                 >
                   ارسال مجدد کد
                 </button>
