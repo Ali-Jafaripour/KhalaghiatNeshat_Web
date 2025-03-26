@@ -3,9 +3,10 @@ const OtpModel = require("./../models/otp");
 const usersModel = require("./../models/users");
 
 module.exports.sendOTP = async (req, res) => {
-  const code = Math.floor(Math.random() * 99999);
+  const code = Math.floor(10000 + Math.random() * 90000);
+
   const now = new Date();
-  const expireAt = now.getTime() + 300_000;
+  const expireAt = now.getTime() + 120_000;
   try {
     request.post(
       {
@@ -42,8 +43,10 @@ module.exports.sendOTP = async (req, res) => {
 };
 
 module.exports.verifyOTP = async (req, res) => {
+  console.log(req.body.phoneNumber,req.body.code);
+  
   const otp = await OtpModel.findOneAndUpdate(
-    {phone: req.body.phone,},
+    {phone: req.body.phoneNumber,},
     {
       $inc:{
         uses:1
