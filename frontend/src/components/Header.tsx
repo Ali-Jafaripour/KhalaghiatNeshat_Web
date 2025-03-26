@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             
               <div className='flex justify-end lg:justify-center '>
                   <button 
-                  onClick={() => navigate("/Singup")}
+                  onClick={() => navigate("/PhoneVerification")}
                   className="z-10 font-Potk h-fit inline-flex lg:pr-7 pr-4 lg:pl-[6rem] pl-[2.7rem] lg:py-5 py-3 lg:text-xl lg:rounded-3xl  animate-shimmer 
                   items-center justify-center rounded-[1.3rem] border border-primary-border
                   bg-[linear-gradient(110deg,#101010,30%,#272727,50%,#101010)] 
