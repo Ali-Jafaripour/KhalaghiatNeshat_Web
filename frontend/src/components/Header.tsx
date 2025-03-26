@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from "clsx";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { FlipWords } from "../components/ui/flip-words";
+import { FlipWords } from "./ui/flip-words";
 import { useNavigate } from "react-router-dom";
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage, Signup,Game } from "../src/pages";
+import { HomePage, Signup,Game } from "./pages";
 import {Background} from "./components/ui"
 import './index.css'
 
