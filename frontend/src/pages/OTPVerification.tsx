@@ -95,6 +95,12 @@ const OTPVerification: React.FC = () => {
                 </button>
               )}
             </p>
+            <button 
+              onClick={() => navigate("/PhoneVerification")}
+              className="text-primary-2 underline font-bold"
+            >
+            ویرایـش شمــاره همــراه
+            </button>
           </div>
 
           <div className="flex justify-center items-center">
