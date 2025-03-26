@@ -12,14 +12,34 @@ const PhoneVerification: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!phoneNumber || phoneNumber.length !== 11) {
-      setError('لطفا شماره موبایل معتبر وارد کنید');
+    setError(""); // پاک کردن خطاهای قبلی
+  
+    if (!phoneNumber) {
+      setError("لطفاً شماره موبایل را وارد کنید.");
       return;
     }
-
-    // Here you would typically make an API call to send OTP
-    // For now, we'll just navigate to the OTP confirmation page
+  
+    if (!/^\d+$/.test(phoneNumber)) {
+      setError("شماره موبایل فقط باید شامل اعداد باشد.");
+      return;
+    }
+  
+    if (!phoneNumber.startsWith("0")) {
+      setError("شماره موبایل باید با 0 شروع شود.");
+      return;
+    }
+  
+    if (phoneNumber.length !== 11) {
+      setError("شماره موبایل باید دقیقاً 11 رقم باشد.");
+      return;
+    }
+  
+    if (!/^09\d{9}$/.test(phoneNumber)) {
+      setError("لطفاً یک شماره موبایل معتبر وارد کنید.");
+      return;
+    }
+  
+    // اگر همه چیز درست بود، به صفحه بعدی برو
     navigate('/verify-otp', { state: { phoneNumber } });
   };
 
