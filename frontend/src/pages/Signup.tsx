@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LottieIcon from "../Icon/LottieIcon.tsx"
 import icon1 from "../Icon/icon1.json";
-import Call from "../Icon/Calling V5.json";
+import Email from "../Icon/mail.json";
+import Isex from "../Icon/Sex.json";
 import id from "../Icon/Face Id.json";
 import id2 from "../Icon/Security.json";
+import CustomCheckbox from '../components/CustomCheckbox';
 
 
 
@@ -31,10 +33,10 @@ const SignupForm: React.FC = () => {
 
   // States for form fields
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setemail] = useState('');
   const [studentId, setstudentId] = useState('');
   const [nationalId, setnationalId] = useState('');
-
+  const [sex, setSex] = useState('');
   // State for error messages
   const [error, setError] = useState('');
 
@@ -43,7 +45,7 @@ const SignupForm: React.FC = () => {
     e.preventDefault();
 
     // Basic form validation
-    if (!name || !studentId || !phone || !nationalId) {
+    if (!name || !studentId || !email || !nationalId) {
       setError('!!لطفا تمام فیلدها را پر کنید'  );
       return;
     }
@@ -130,41 +132,76 @@ const SignupForm: React.FC = () => {
         {/* ------------------------------------------------------------  Student ID   ------------------------------------------------------------ */}
         {/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="phone" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3">  : شماره دانشجویی    </label>
-            <input
-              type="tel"
-              id="studentId"
-              value={studentId}
-              onChange={(e) => setstudentId(e.target.value)}
-              className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
-              justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-              border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
+          <div className="flex flex-row gap-4 justify-between">
 
-              placeholder=".شماره دانشجویی خود را وارد کنید"
-            />
-            <div className="absolute  top-[19.3rem] right-10"> <LottieIcon animationData={id2} width={40} height={40} /></div>
+            <div className="flex flex-col w-[50%] lg:w-[40%] gap-2">
+              <label htmlFor="sex" className="block font-Peyda lg:text-sm text-xs font-medium text-primary-1 text-right mr-3">  : جنسیت   </label>
+                <div className="flex gap-2 lg:gap-4 w-full lg:pl-6 pl-2 pr-2 py-[0.1rem] bg-white/5 rounded-lg items-center 
+                  justify-between shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                  border-2 border-white/10 font-Peyda">
+
+                  <div className="flex flex-row lg:w-[80%] justify-around gap-2 lg:gap-0">     
+                    <CustomCheckbox
+                      id="female"
+                      checked={sex === 'female'}
+                      onChange={() => setSex(sex === 'female' ? '' : 'female')}
+                      label="خانم"
+                      
+                    />
+                    <CustomCheckbox
+                      id="male"
+                      checked={sex === 'male'}
+                      onChange={() => setSex(sex === 'male' ? '' : 'male')}
+                      label="آقا"
+                    />
+                  </div>
+
+                  <div>
+                    <LottieIcon animationData={Isex} width={40} height={40} />
+                  </div>
+                </div>
+            </div>
+            
+            <div className="flex flex-col w-[60%] gap-2">
+
+              <label htmlFor="StudentID" className="block font-Peyda lg:text-sm text-xs font-medium text-primary-1 text-right mr-3 ">  : شماره دانشجویی    </label>
+                  <input
+                    type="tel"
+                    id="studentId"
+                    value={studentId}
+                    onChange={(e) => setstudentId(e.target.value)}
+                    className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
+                    justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                    border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
+
+                    placeholder=".شماره دانشجویی خود را وارد کنید"
+                  />
+                  <div className="absolute  top-[19.3rem] right-10"> 
+                  <LottieIcon animationData={id2} width={40} height={40} />
+                  </div>
+            </div>
+        
           </div>
 
 
         {/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
-        {/* ------------------------------------------------------------      phone     ------------------------------------------------------------ */}
+        {/* ------------------------------------------------------------      email     ------------------------------------------------------------ */}
         {/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="phone" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3">  : شماره تلفن    </label>
+            <label htmlFor="email" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3">  : ایمیل   </label>
             <input
               type="tel"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              id="email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
               justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
               border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
 
-              placeholder=".شماره تلفن خود را وارد کنید"
+              placeholder=".ایمیل خود را وارد کنید"
             />
-            <div className="absolute  top-[25.3rem] right-10"> <LottieIcon animationData={Call} width={40} height={40}  /></div>
+            <div className="absolute  top-[25.3rem] right-10"> <LottieIcon animationData={Email} width={40} height={40}  /></div>
           </div>
 
          
