@@ -24,8 +24,8 @@ const PhoneVerification: React.FC = () => {
       return;
     }
   
-    if (!phoneNumber.startsWith("0")) {
-      setError("شماره موبایل باید با 0 شروع شود.");
+    if (!phoneNumber.startsWith("09")) {
+      setError("شماره موبایل باید با 09 شروع شود.");
       return;
     }
   
