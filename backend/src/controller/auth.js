@@ -1,7 +1,7 @@
 const request = require("request");
 const OtpModel = require("./../models/otp");
 const usersModel = require("./../models/users");
-
+const jwt = require("jsonwebtoken")
 module.exports.sendOTP = async (req, res) => {
   const code = Math.floor(10000 + Math.random() * 90000);
 
@@ -67,6 +67,18 @@ module.exports.verifyOTP = async (req, res) => {
         return res.status(409).json({ message: "Code is not correct !!" });
       }
       else{
+        const token = jwt.sign(
+          { phone: otp.phone },
+          process.env.JWT_SECRET,
+          { expiresIn: "1h" }
+        );
+        res.cookie("authToken", token, {
+          httpOnly: true,  
+          secure: process.env.NODE_ENV === "production", 
+          maxAge: 60 * 60 * 1000, 
+          sameSite: "strict" 
+        });
+
       return res.status(200).json({ message: "Code is correct :))" });
       }
     }
