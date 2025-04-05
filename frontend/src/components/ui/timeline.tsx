@@ -34,6 +34,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log("Scroll Progress:", latest);
+
     const elements = document.querySelectorAll('.timeline-dot');
     const newActiveIndices = [...activeIndices];
     

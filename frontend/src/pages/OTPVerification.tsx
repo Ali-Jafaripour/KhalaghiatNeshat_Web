@@ -37,7 +37,7 @@ const OTPVerification: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const otpString = otp.join('');
     
@@ -46,9 +46,23 @@ const OTPVerification: React.FC = () => {
       return;
     }
 
-    // Here you would typically verify the OTP with your API
-    // For now, we'll just navigate to the signup page
-    navigate('/Signup');
+  try{
+    const response = await fetch('http://www.api.bitok.ir/auth/sms/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phoneNumber, code: otpString })
+    });
+    const data = await response.json();
+    if (response.ok) {
+      navigate('/Signup');
+    } else {
+      setError(data.message || 'کد وارد شده نادرست است.');
+    }
+
+  }catch(err){
+    setError('خطایی در ارتباط با سرور رخ داده است. لطفاً دوباره تلاش کنید.');
+  }
+
   };
 
   return (

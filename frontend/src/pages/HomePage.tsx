@@ -75,7 +75,7 @@ export function TimelineDemo() {
           >
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ef5925.JPG"
+              src="/images/IMG_ef5925.webp"
               alt="hero template"
               width={500}
               height={500}
@@ -84,7 +84,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ef2239 (1).JPG"
+              src="/images/IMG_ef2239 (1).webp"
               alt="hero template"
               width={500}
               height={500}
@@ -93,7 +93,7 @@ export function TimelineDemo() {
             
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ef2239 (2).JPG"
+              src="/images/IMG_ef2239 (2).webp"
               alt="bento template"
               width={500}
               height={500}
@@ -101,7 +101,7 @@ export function TimelineDemo() {
             />
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ef2239 (3).JPG"
+              src="/images/IMG_ef2239 (3).webp"
               alt="cards template"
               width={500}
               height={500}
@@ -154,7 +154,7 @@ export function TimelineDemo() {
            
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_G2753.JPG"
+              src="/images/IMG_G2753.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -162,7 +162,7 @@ export function TimelineDemo() {
             />
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_G3336.JPG"
+              src="/images/IMG_G3336.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -173,7 +173,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_6732.JPG"
+              src="/images/IMG_6732.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -181,7 +181,7 @@ export function TimelineDemo() {
             />
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_2863.JPG"
+              src="/images/IMG_2863.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -189,7 +189,7 @@ export function TimelineDemo() {
             />
            <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_3463.JPG"
+              src="/images/IMG_3463.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -202,7 +202,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_G6244.jpg"
+              src="/images/IMG_G6244.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -211,7 +211,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_G6435.JPG"
+              src="/images/IMG_G6435.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -243,7 +243,7 @@ export function TimelineDemo() {
            
           <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek3578.JPG"
+              src="/images/IMG_ek3578.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -251,7 +251,7 @@ export function TimelineDemo() {
             />
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek3578.JPG"
+              src="/images/IMG_ek3578.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -262,7 +262,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek6946.JPG"
+              src="/images/IMG_ek6946.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -270,7 +270,7 @@ export function TimelineDemo() {
             />
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek2485.JPG"
+              src="/images/IMG_ek2485.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -280,7 +280,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek3578.JPG"
+              src="/images/IMG_ek3578.webp"
               alt="startup template"
               width={500}
               height={500}
@@ -289,7 +289,7 @@ export function TimelineDemo() {
 
             <motion.img
               variants={imageAnimations.item}
-              src="../../public/images/IMG_ek3578.JPG"
+              src="/images/IMG_ek3578.webp"
               alt="startup template"
               width={500}
               height={500}

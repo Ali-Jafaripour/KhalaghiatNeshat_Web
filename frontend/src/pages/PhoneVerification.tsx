@@ -10,16 +10,58 @@ const PhoneVerification: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!phoneNumber || phoneNumber.length !== 11) {
-      setError('لطفا شماره موبایل معتبر وارد کنید');
+    setError(""); // پاک کردن خطاهای قبلی
+  
+    if (!phoneNumber) {
+      setError("لطفاً شماره موبایل را وارد کنید.");
       return;
     }
+  
+    if (!/^\d+$/.test(phoneNumber)) {
+      setError("شماره موبایل فقط باید شامل اعداد باشد.");
+      return;
+    }
+  
+    if (!phoneNumber.startsWith("09")) {
+      setError("شماره موبایل باید با 09 شروع شود.");
+      return;
+    }
+  
+    if (phoneNumber.length !== 11) {
+      setError("شماره موبایل باید دقیقاً 11 رقم باشد.");
+      return;
+    }
+  
+    if (!/^09\d{9}$/.test(phoneNumber)) {
+      setError("لطفاً یک شماره موبایل معتبر وارد کنید.");
+      return;
+    }
+    try{
+      const response = await fetch("http://www.api.bitok.ir/auth/sms/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: phoneNumber }),
+      });
+      const data = await response.json();
 
-    // Here you would typically make an API call to send OTP
-    // For now, we'll just navigate to the OTP confirmation page
+      if (!response.ok) {
+        throw new Error(data.message || "مشکلی پیش آمد، لطفاً دوباره امتحان کنید.");
+      }
+  
+      navigate("/verify-otp", { state: { phoneNumber } });
+  
+    }catch (error) {
+      if (error instanceof Error) {
+        setError(error.message); 
+      } else {
+        setError("مشکلی پیش آمده است."); 
+      }
+    }
+    
     navigate('/verify-otp', { state: { phoneNumber } });
   };
 
