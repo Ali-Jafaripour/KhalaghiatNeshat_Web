@@ -12,6 +12,13 @@ const OTPVerification: React.FC = () => {
   const phoneNumber = location.state?.phoneNumber;
 
   useEffect(() => {
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = "auto"; 
+    };
+  }, []);
+
+  useEffect(() => {
     if (timer > 0) {
       const interval = setInterval(() => setTimer(prev => prev - 1), 1000);
       return () => clearInterval(interval);
@@ -45,7 +52,7 @@ const OTPVerification: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen overflow-hidden ">
 
       <div className="absolute h-full w-full top-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_10%,#0001_40%,transparent_100%)]"></div>
 
