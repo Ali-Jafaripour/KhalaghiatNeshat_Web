@@ -7,7 +7,7 @@ import CustomCheckbox from '../components/CustomCheckbox';
 import LottieIcon from "../Icon/LottieIcon.tsx"
 import Game from "../Icon/Game.json";
 
-const SignupForm: React.FC = () => {
+const programmingMach: React.FC = () => {
 
  useEffect(() => {
     document.documentElement.style.overflow = "hidden";
@@ -30,7 +30,7 @@ const SignupForm: React.FC = () => {
     e.preventDefault();
     
     if (skipRegistration) {
-      navigate("/ProgrammingMach");
+      navigate("/dashboard");
       return;
     }
 
@@ -41,8 +41,8 @@ const SignupForm: React.FC = () => {
     }
   
     setError('');
-
-    navigate("/ProgrammingMach");  
+    
+    navigate("/dashboard");  
   };
   
 
@@ -62,13 +62,13 @@ const SignupForm: React.FC = () => {
 
 
         <div className="z-20 flex flex-col gap-8 absolute right-[6.5%] lg:right-[30%]  top-[12%] lg:top-[16%]   w-[87%] lg:w-[40%] p-8 rounded-2xl  backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)] ">
-            <h2 className="font-Potk text-primary-2 text-2xl font-semibold mb-4 text-center"> فرم ثبت نام بازی </h2>
+            <h2 className="font-Potk text-primary-2 text-2xl font-semibold mt-1 mb-3 text-center"> فرم ثبت نام مسابقه برنامه نویســی </h2>
 
             <DotLottieReact
-              src="https://lottie.host/5f1506c5-527f-4115-b171-45e4f06c2e17/QPo5nLk92m.lottie"
+              src="https://lottie.host/6f5f9873-23b3-4d93-b70d-1d7f6aaae94a/tSaaOFLfE0.lottie"
               loop
               autoplay
-              /> 
+            />
 
 {/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
 {/* ------------------------------------------------------------  فرم ثبت نام   ----------------------------------------------------------- */}
@@ -118,52 +118,11 @@ const SignupForm: React.FC = () => {
                 {skipRegistration ? 'رفتــن به صفحـــه بعــدی' : 'ثـبت نـام کنیـد'}
               </button>
             </div>
-
-
-
         </div>
+        <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(250%_150%_at_50%_20%,#0000_35%,#ff6000_180%)]   lg:[background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_190%)]"></div>
 
-
-
-
-{/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
-{/* -------------------------------------------------------    NOT Select anything       --------------------------------------------------- */}
-{/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
-
-      {/* {isModalOpen && (
-        <div className="z-50 fixed inset-0 flex items-center justify-center backdrop-blur-lg ">
-
-          <div className=" bg-[#ffffff03] border  border-white/20 
-            shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] py-8  rounded-xl
-            max-w-sm lg:w-full w-[83%] backdrop-blur-3xl
-            flex flex-col justify-center items-center gap-6">
-
-
-            <h3 className="lg:text-lg text-sm  font-semibold font-Peyda text-primary-1 text-right text-nowrap ">آیا مطمئن هستید که هیچ گزینه‌ای انتخاب نکردید؟</h3>
-            <div className="flex justify-between gap-4 ">
-              <button
-                className="bg-red-600 bg-opacity-20 border border-red-900 border-opacity-60 text-primary-placeholder  font-Peyda font-semibold px-4 py-2 rounded-lg text-nowrap"
-                onClick={() => handleModalConfirm(false)} 
-              >
-                نه، برمی‌گردم
-              </button>
-              <button
-                className="bg-green-700 bg-opacity-20 border border-green-900 border-opacity-60 text-primary-placeholder font-Peyda font-semibold px-4 py-2 rounded-lg text-nowrap"
-                onClick={() => handleModalConfirm(true)} 
-              >
-                بله، ادامه می‌دهم
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
-
-
-<div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(250%_150%_at_50%_20%,#0000_35%,#ff6000_180%)]   lg:[background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_190%)]"></div>
-
-     
     </div>
   );
 };
 
-export default SignupForm;
+export default programmingMach;

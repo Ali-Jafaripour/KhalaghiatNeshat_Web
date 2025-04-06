@@ -2,7 +2,7 @@ import React from 'react';
 import PhoneVerification from './pages/PhoneVerification';
 import OTPVerification from './pages/OTPVerification';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage, Signup,Game } from "./pages";
+import { HomePage, Signup,Game,Dashboard,ProgrammingMach } from "./pages";
 import {Background} from "./components/ui"
 import './index.css'
 
@@ -17,6 +17,9 @@ const App: React.FC = () => {
           <Route path="/verify-otp" element={<OTPVerification />} />
            <Route path="/Signup" element={<Signup />} />
            <Route path="/GameForm" element={< Game/>} />
+           <Route path="/Dashboard" element={< Dashboard/>} />
+           <Route path="/ProgrammingMach" element={<ProgrammingMach />} />
+
          </Routes>
       </Background>
     </Router>
