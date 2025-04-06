@@ -96,7 +96,7 @@ const OTPVerification: React.FC = () => {
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleChange(e.target, idx)}
-                className="w-12 h-12 text-center bg-white/5 rounded-lg 
+                className=" focus:border-primary-2 w-12 h-12 text-center bg-white/5 rounded-lg 
                   shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
                   border-2 border-white/10 font-Peyda text-primary-1 text-xl"
               />

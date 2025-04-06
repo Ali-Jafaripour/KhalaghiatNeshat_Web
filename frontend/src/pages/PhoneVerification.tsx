@@ -85,9 +85,11 @@ const PhoneVerification: React.FC = () => {
                 id="phone"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full lg:w-[70%] pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
-                  justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-                  border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
+                className="w-full lg:w-[70%] pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg 
+                  flex items-center justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                  border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder 
+                  text-right text-primary-1 focus:border-primary-2 focus:border-[1px] focus:outline-none 
+                  transition-colors duration-200"
                 placeholder=".شماره موبایل خود را وارد کنید"
               />
               <div className="absolute top-[7.7rem] right-10 lg:right-[19%]">

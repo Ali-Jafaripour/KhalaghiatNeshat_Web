@@ -73,7 +73,7 @@ const Test: React.FC = () => {
             src="https://lottie.host/fed3369a-1411-41e8-b7bb-b33aaea70d8a/PbKjIt09yz.lottie"
             loop
             autoplay
-            className='absolute top-[22.5%] lg:top-[20%] left-0 z-10 w-full' />
+            className='absolute top-[20%] lg:top-[17%] left-0 z-10 w-full' />
         )}
       </div>
     </div>
