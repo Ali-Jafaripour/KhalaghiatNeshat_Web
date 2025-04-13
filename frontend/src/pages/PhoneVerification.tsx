@@ -66,31 +66,35 @@ const PhoneVerification: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden ">
       <div className="absolute h-full w-full top-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_10%,#0001_40%,transparent_100%)]"></div>
 
       <div className="flex justify-center items-center mt-16">
         {error && <p className="text-red-500 text-center mb-4 font-Peyda font-bold">{error}</p>}
       </div>
 
-      <div className="z-20 absolute right-[6.5%] lg:right-[30%] top-[14%] lg:top-[20%] w-[87%] lg:w-[40%] p-8 rounded-2xl backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)]">
+      <div className="z-20 absolute right-[6.5%] lg:right-[30%] top-[14%] lg:top-[20%] w-[85%] lg:w-[40%] p-8 rounded-2xl backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)]">
         <h2 className="text-2xl font-semibold mb-6 text-center text-primary-2 font-Potk">تایید شماره موبایل</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="phone" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3">: شماره موبایل</label>
-            <input
-              type="tel"
-              id="phone"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
-                justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-                border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
-              placeholder=".شماره موبایل خود را وارد کنید"
-            />
-            <div className="absolute top-[7.3rem] right-10">
-              <LottieIcon animationData={phoneIcon} width={40} height={40} />
+          <div className="flex flex-col gap-3">
+            <label htmlFor="phone" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3 lg:mr-[19%]">: شماره موبایل</label>
+            <div className='flex justify-center '>
+              <input
+                type="tel"
+                id="phone"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="w-full lg:w-[70%] pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg 
+                  flex items-center justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                  border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder 
+                  text-right text-primary-1 focus:border-primary-2 focus:border-[1px] focus:outline-none 
+                  transition-colors duration-200"
+                placeholder=".شماره موبایل خود را وارد کنید"
+              />
+              <div className="absolute top-[7.7rem] right-10 lg:right-[19%]">
+                <LottieIcon animationData={phoneIcon} width={40} height={40} />
+              </div>
             </div>
           </div>
           <div>

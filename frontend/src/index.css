@@ -8,6 +8,7 @@ html, body {
     overflow: auto;
     margin: 0; 
     padding: 0; 
+    font-family: Peyda,'Courier New', Courier, monospace ;
   }
   
   body {
@@ -61,3 +62,5 @@ html, body {
 	src: url('/fonts/woff/PeydaWeb-ExtraBold.woff') format('woff');
   }
   
+
+ 

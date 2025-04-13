@@ -1,129 +1,96 @@
-import React from 'react';
+"use client"
+import React from "react"
+import { motion } from "framer-motion"
+import { Timeline } from "../components/ui/timeline"
+import { OptimizedImage } from "../components/ui/image-grid"
 import { Footer, Header,Test } from '../components';
-import { Timeline } from '../components/ui/timeline';
-import { motion } from 'framer-motion';
-
-
-
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-background">
       <Header />
       <Test/>
-      <div className="h-auto w-full py-2 px-2">
-        <TimelineDemo />
-      </div>
+      <main className="flex-grow">
+        <div className="container mx-auto py-8 px-4">
+          <TimelineDemo />
+        </div>
+      </main>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
-
-
-
-
+export default HomePage
 
 const imageAnimations = {
   container: {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   },
   item: {
     hidden: { opacity: 0, y: 90, scale: 0.92 },
-    visible: { 
-      opacity: 1, 
-      y: 10, 
+    visible: {
+      opacity: 1,
+      y: 10,
       scale: 1,
       transition: {
         duration: 2.5,
         ease: [0.25, 0.1, 0.25, 1],
-      }
-    }
-  }
-};
-
-
-
-
+      },
+    },
+  },
+}
 
 export function TimelineDemo() {
-  const data = [
-    {
-      title: "افتتاحیه",
-      content: (
-        <div>
-          <p className="text-primary-1 text-xs md:text-sm font-normal mb-8 text-right">
-            یه جمله در باره ی افتتحایه مراسم
-          </p>
-          <p className="text-primary-1 text-xs md:text-sm font-normal mb-8 text-right">
+  const timelineData = React.useMemo(
+    () => [
+      {
+        title: "افتتاحیه",
+        content: (
+          <div>
+            <p className="text-primary-1 text-xs md:text-sm font-normal mb-8 text-right font-Peyda">
             یه سری چرت و پرت دیگ برای افتتاحیه این رویداد 
-          </p>
-          <motion.div 
-            variants={imageAnimations.container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px", amount:0.1 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ef5925.webp"
-              alt="hero template"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
+            </p>
 
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ef2239 (1).webp"
-              alt="hero template"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ef2239 (2).webp"
-              alt="bento template"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ef2239 (3).webp"
-              alt="cards template"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-
-
-            
-          </motion.div>
-
-
-        </div>
-      ),
-    },
-    {
-      title: "مسابقات ",
-      content: (
-        <div>
-          <p className="text-primary-1 text-xs md:text-sm font-normal mb-4 text-right">
-          یه جمله در باره ی مسابقات مراسم
-          </p>
-          <div className="mb-8 flex flex-col justify-center items-end">
+            <div className="grid grid-cols-2 gap-4">
+              <OptimizedImage
+                src="../../public/images/IMG_ef5925.webp"
+                alt="Opening ceremony image 1"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
+              />
+              <OptimizedImage
+                src="../../public/images/IMG_ef2239 (2).webp"
+                alt="Opening ceremony image 2"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
+              />
+              <OptimizedImage
+                src="../../public/images/IMG_ef2239 (2).webp"
+                alt="Opening ceremony image 3"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
+              />
+              <OptimizedImage
+                src="../../public/images/IMG_ef2239 (3).webp"
+                alt="Opening ceremony image 4"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
+              />
+            </div>
+          </div>
+        ),
+      },
+      {
+        title: "مسابقات ",
+        content: (
+          <div>
+            <p className="text-primary-1 text-xs md:text-sm font-normal mb-4 text-right">
+            یه جمله در باره ی مسابقات مراسم
+            </p>
+            <div className="mb-8 flex flex-col justify-center items-end">
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
              مستر ربات✅  
             </div>
@@ -141,171 +108,139 @@ export function TimelineDemo() {
             </div>
           </div>
 
+            <motion.div
+              variants={imageAnimations.container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px", amount: 0.1 }}
+              className="h-72 lg:h-auto grid grid-cols-10 grid-rows-7 gap-3 lg:gap-6"
+            >
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_G2753.webp"
+                  alt="Competition image 1"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_G3336.webp"
+                  alt="Competition image 2"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
 
+              <motion.div variants={imageAnimations.item} className="col-span-3 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_6732.webp"
+                  alt="Competition image 3"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-4 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_2863.webp"
+                  alt="Competition image 4"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-3 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_3463.webp"
+                  alt="Competition image 5"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
 
-
-          <motion.div 
-            variants={imageAnimations.container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px", amount:0.1}}
-            className="h-72 lg:h-auto grid grid-cols-10  grid-rows-7  gap-3 lg:gap-6">
-
-           
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_G2753.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_G3336.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full " />
-
-
-
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_6732.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-3 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full  "
-            />
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_2863.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-4 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-           <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_3463.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-3 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-
-
-
-
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_G6244.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-3 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_G6435.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-3 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-            
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-3 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_G6244.webp"
+                  alt="Competition image 6"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-3 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_G6435.webp"
+                  alt="Competition image 7"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
             </motion.div>
-        </div>
-      ),
-    },
-    {
-      title: "اختتامیه",
-      content: (
-        <div>
-          <p className="text-primary-1 text-xs md:text-sm font-normal mb-8 text-right">
-          یه جمله در باره ی اختتحایه مراسم    
-          </p>
+          </div>
+        ),
+      },
+      {
+        title: "اختتامیه",
+        content: (
+          <div>
+            <p className="text-primary-1 text-xs md:text-sm font-normal mb-8">
+              یه جمله در باره ی اختتحایه مراسم  
+            </p>
 
+            <motion.div
+              variants={imageAnimations.container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px", amount: 0.1 }}
+              className="h-72 lg:h-auto grid grid-cols-10 grid-rows-7 gap-3 lg:gap-6"
+            >
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek3578.webp"
+                  alt="Closing ceremony image 1"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek3578.webp"
+                  alt="Closing ceremony image 2"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
 
+              <motion.div variants={imageAnimations.item} className="col-span-7 row-span-3 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek6946.webp"
+                  alt="Closing ceremony image 3"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-3 row-span-3 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek2485.webp"
+                  alt="Closing ceremony image 4"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
 
-         
-          <motion.div 
-            variants={imageAnimations.container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px", amount:0.1}}
-            className="h-72 lg:h-auto grid grid-cols-10  grid-rows-7  gap-3 lg:gap-6">
-
-           
-          <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek3578.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek3578.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full " />
-
-
-
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek6946.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-7 row-span-3 rounded-lg object-cover h-full md:h-44 lg:h-auto w-full  "
-            />
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek2485.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-3 row-span-3 rounded-lg object-cover h-full md:h-44 lg:h-full w-full "
-            />
-
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek3578.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-
-            <motion.img
-              variants={imageAnimations.item}
-              src="/images/IMG_ek3578.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="col-span-5 row-span-2 rounded-lg object-cover h-full md:h-44 lg:h-60 w-full "
-            />
-            
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek3578.webp"
+                  alt="Closing ceremony image 5"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
+              <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
+                <OptimizedImage
+                  src="../../public/images/IMG_ek3578.webp"
+                  alt="Closing ceremony image 6"
+                  className="object-cover h-full w-full"
+                />
+              </motion.div>
             </motion.div>
-
-        </div>
-      ),
-    },
-  ];
+          </div>
+        ),
+      },
+    ],
+    [],
+  )
 
   return (
     <div className="w-full relative">
-      <Timeline data={data} />
+      <Timeline data={timelineData} />
     </div>
-  );
+  )
 }
+

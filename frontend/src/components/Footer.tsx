@@ -43,9 +43,9 @@ const Footer: React.FC = () => {
             >
               <h3 className="text-xl font-bold">تماس با ما</h3>
               <div className="space-y-2 text-sm opacity-80">
-                <p>ایمیل: example@example.com</p>
-                <p>تلفن: 123-456-7890</p>
-                <p>آدرس: بابل، خیابان شریعتی</p>
+                <p> <span className='font-bold'>BitokSS@gmail.com</span> :ایمیل</p>
+                <p>شماره همـراه دبیر:  <span className='font-bold'>09137071261 </span></p>
+                <p>آدرس:دانشگاه یزد ،فنی یک ،دانشکده کامپیوتر</p>
               </div>
             </motion.div>
 

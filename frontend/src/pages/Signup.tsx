@@ -97,10 +97,10 @@ const SignupForm: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               onFocus={handleDivClick} 
-              className="w-full  pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
+              className="w-full pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
                 justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-                border-2 border-white/10  font-Peyda placeholder:text-primary-placeholder text-right"
-
+                border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
+                focus:border-primary-2 focus:border-[1px] focus:outline-none  text-primary-1"
               placeholder=".نام کامل خود را وارد کنید"
             />
             <div className="absolute  top-[7.3rem] right-10"> <LottieIcon animationData={icon1} width={40} height={40} loop={loopAnimation}  /></div>
@@ -119,10 +119,11 @@ const SignupForm: React.FC = () => {
               id="nationalId"
               value={nationalId}
               onChange={(e) => setnationalId(e.target.value)}
-              className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
-              justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-              border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
-
+              className="w-full pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
+                justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
+                focus:border-primary-2 focus:border-[1px] focus:outline-none text-primary-1
+                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               placeholder=".شماره ملی خود را وارد کنید"
             />
             <div className="absolute  top-[13.3rem] right-10"> <LottieIcon animationData={id} width={40} height={40}  /></div>
@@ -166,13 +167,15 @@ const SignupForm: React.FC = () => {
 
               <label htmlFor="StudentID" className="block font-Peyda lg:text-sm text-xs font-medium text-primary-1 text-right mr-3 ">  : شماره دانشجویی    </label>
                   <input
-                    type="tel"
+                    type="number"
                     id="studentId"
                     value={studentId}
                     onChange={(e) => setstudentId(e.target.value)}
                     className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
                     justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-                    border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
+                    border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
+                     focus:border-primary-2 focus:border-[1px] focus:outline-none text-primary-1
+                      [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 
                     placeholder=".شماره دانشجویی خود را وارد کنید"
                   />
@@ -197,7 +200,8 @@ const SignupForm: React.FC = () => {
               onChange={(e) => setemail(e.target.value)}
               className="w-full  pl-2 pr-12  py-[0.6rem] bg-white/5 rounded-lg flex items-center 
               justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-              border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right"
+              border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
+               focus:border-primary-2 focus:border-[1px] focus:outline-none text-primary-1"
 
               placeholder=".ایمیل خود را وارد کنید"
             />
