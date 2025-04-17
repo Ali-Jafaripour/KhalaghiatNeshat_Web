@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Timeline } from "../components/ui/timeline"
 import { OptimizedImage } from "../components/ui/image-grid"
 import { Footer, Header,Test } from '../components';
+import img from '../../public/images/IMG_ef5925.webp'
 
 const HomePage: React.FC = () => {
   return (
@@ -60,22 +61,22 @@ export function TimelineDemo() {
 
             <div className="grid grid-cols-2 gap-4">
               <OptimizedImage
-                src="../../public/images/IMG_ef5925.webp"
+                src={img}
                 alt="Opening ceremony image 1"
                 className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
               />
               <OptimizedImage
-                src="../../public/images/IMG_ef2239 (2).webp"
+                src="/images/IMG_ef2239 (2).webp"
                 alt="Opening ceremony image 2"
                 className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
               />
               <OptimizedImage
-                src="../../public/images/IMG_ef2239 (2).webp"
+                src="/images/IMG_ef2239 (2).webp"
                 alt="Opening ceremony image 3"
                 className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
               />
               <OptimizedImage
-                src="../../public/images/IMG_ef2239 (3).webp"
+                src="/images/IMG_ef2239 (3).webp"
                 alt="Opening ceremony image 4"
                 className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]"
               />
@@ -117,14 +118,14 @@ export function TimelineDemo() {
             >
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_G2753.webp"
+                  src="/images/IMG_G2753.webp"
                   alt="Competition image 1"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_G3336.webp"
+                  src="/images/IMG_G3336.webp"
                   alt="Competition image 2"
                   className="object-cover h-full w-full"
                 />
@@ -132,21 +133,21 @@ export function TimelineDemo() {
 
               <motion.div variants={imageAnimations.item} className="col-span-3 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_6732.webp"
+                  src="/images/IMG_6732.webp"
                   alt="Competition image 3"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-4 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_2863.webp"
+                  src="/images/IMG_2863.webp"
                   alt="Competition image 4"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-3 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_3463.webp"
+                  src="/images/IMG_3463.webp"
                   alt="Competition image 5"
                   className="object-cover h-full w-full"
                 />
@@ -154,14 +155,14 @@ export function TimelineDemo() {
 
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-3 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_G6244.webp"
+                  src="/images/IMG_G6244.webp"
                   alt="Competition image 6"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-3 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_G6435.webp"
+                  src="/images/IMG_G6435.webp"
                   alt="Competition image 7"
                   className="object-cover h-full w-full"
                 />
@@ -187,14 +188,14 @@ export function TimelineDemo() {
             >
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek3578.webp"
+                  src="/images/IMG_ek3578.webp"
                   alt="Closing ceremony image 1"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek3578.webp"
+                  src="/images/IMG_ek3578.webp"
                   alt="Closing ceremony image 2"
                   className="object-cover h-full w-full"
                 />
@@ -202,14 +203,14 @@ export function TimelineDemo() {
 
               <motion.div variants={imageAnimations.item} className="col-span-7 row-span-3 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek6946.webp"
+                  src="/images/IMG_ek6946.webp"
                   alt="Closing ceremony image 3"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-3 row-span-3 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek2485.webp"
+                  src="/images/IMG_ek2485.webp"
                   alt="Closing ceremony image 4"
                   className="object-cover h-full w-full"
                 />
@@ -217,14 +218,14 @@ export function TimelineDemo() {
 
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek3578.webp"
+                  src="/images/IMG_ek3578.webp"
                   alt="Closing ceremony image 5"
                   className="object-cover h-full w-full"
                 />
               </motion.div>
               <motion.div variants={imageAnimations.item} className="col-span-5 row-span-2 rounded-lg overflow-hidden">
                 <OptimizedImage
-                  src="../../public/images/IMG_ek3578.webp"
+                  src="/images/IMG_ek3578.webp"
                   alt="Closing ceremony image 6"
                   className="object-cover h-full w-full"
                 />

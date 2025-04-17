@@ -15,22 +15,57 @@ const SignupForm: React.FC = () => {
       document.documentElement.style.overflow = "auto"; 
     };
   }, []);
+// @ts-ignore
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);   
+// @ts-ignore
+
   const [isModalOpen, setIsModalOpen] = useState(false); // وضعیت باز بودن modal
   const [error, setError] = useState('');  
 
   const [teamName, setTeamName] = useState('');
 
   const [skipRegistration, setSkipRegistration] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
   
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const checkTeamName = async () => {
+    try {
+      setIsChecking(true);
+      const response = await fetch('https://www.api.bitok.ir/game/getTeamName', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        if (data.isAvailable) {
+          return true;
+        } else {
+          setError('این تیم ظرفیت تکمیل است و نمی‌توانید به آن ملحق شوید');
+          return false;
+        }
+      } else {
+        setError(data.message || 'خطا در بررسی نام تیم');
+        return false;
+      }
+    } catch (error) {
+      setError('خطا در ارتباط با سرور');
+      return false;
+    } finally {
+      setIsChecking(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (skipRegistration) {
-      navigate("/ProgrammingMach");
+      navigate("/ProgrammingMach", { state: { teamName: null } });
       return;
     }
 
@@ -39,10 +74,14 @@ const SignupForm: React.FC = () => {
       setIsModalOpen(true);
       return;
     }
+
+    const isTeamAvailable = await checkTeamName();
+    if (!isTeamAvailable) {
+      return;
+    }
   
     setError('');
-
-    navigate("/ProgrammingMach");  
+    navigate("/ProgrammingMach", { state: { teamName: teamName.trim() } });  
   };
   
 

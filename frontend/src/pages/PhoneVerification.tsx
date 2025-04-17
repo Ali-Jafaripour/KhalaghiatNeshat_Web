@@ -39,7 +39,7 @@ const PhoneVerification: React.FC = () => {
       return;
     }
     try{
-      const response = await fetch("http://www.api.bitok.ir/auth/sms/send", {
+      const response = await fetch("https://www.api.bitok.ir/auth/sms/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

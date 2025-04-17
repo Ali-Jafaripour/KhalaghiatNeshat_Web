@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
+// @ts-ignore
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+// @ts-ignore
 import LottieIcon from "../Icon/LottieIcon.tsx";
+// @ts-ignore
 import Check from "../Icon/Security.json";
 
 // Update the interface to handle multiple team names
@@ -19,6 +22,7 @@ interface UserData {
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
+  // @ts-ignore
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   // Update the mock data

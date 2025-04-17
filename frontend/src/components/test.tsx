@@ -39,7 +39,7 @@ const Test: React.FC = () => {
       const animateCounter = () => {
         const duration = 5000;
         const startTime = performance.now();
-        const endCount = 100;
+        const endCount = 300;
 
         const updateCounter = (currentTime: number) => {
           const elapsedTime = currentTime - startTime;

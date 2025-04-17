@@ -11,7 +11,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { margin: "-100px" })
   const [activeIndices, setActiveIndices] = useState<boolean[]>(new Array(data.length).fill(false))
-
+// @ts-ignore
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 60%", "end 40%"],

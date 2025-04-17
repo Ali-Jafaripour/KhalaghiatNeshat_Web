@@ -74,7 +74,7 @@ module.exports.verifyOTP = async (req, res) => {
         );
         res.cookie("authToken", token, {
           httpOnly: true,  
-          secure: process.env.NODE_ENV === "production", 
+          secure: false, 
           maxAge: 60 * 60 * 1000, 
           sameSite: "strict" 
         });
