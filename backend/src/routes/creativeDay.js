@@ -4,6 +4,9 @@ const CreativeDay = require('../models/creativeDay');
 const gameController = require("../controller/game")
 const contestController = require("../controller/contest")
 const userController = require('../controller/user');
+const validationEdit = require("./../middlewares/validationEdit")
+
+
 
 router.get('/count', async (req, res) => {
   console.log('[creativeDay/count] Fetching approved creative days count');
@@ -24,7 +27,7 @@ router.post("/contest/save-step", contestController.saveStep);
 
 // User routes
 router.get('/user/getUserData', userController.getUserData);
-router.post('/user/updateUserData', userController.updateUserData);
+router.post('/user/updateUserData', validationEdit,userController.updateUserData);
 router.post('/user/finalizeRegistration', userController.finalizeRegistration);
 
 console.log(`[creativeDay] Routes loaded successfully`);

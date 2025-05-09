@@ -51,7 +51,9 @@ module.exports.getUserData = async (req, res) => {
 // Update user data
 module.exports.updateUserData = async (req, res) => {
     try {
-        const { userData } = req.body;
+
+        const userData = req.body;
+
         
         // Check if user is logged in
         if (!req.session.userId) {
@@ -61,23 +63,17 @@ module.exports.updateUserData = async (req, res) => {
             });
         }
 
-        // Validate required fields
-        if (!userData || !userData.name || !userData.email || !userData.studentId || !userData.nationalId) {
-            return res.status(400).json({
-                success: false,
-                message: "تمامی فیلدهای ضروری را پر کنید"
-            });
-        }
 
         // Find user and update data
-        const user = await creativeDay.findOneAndUpdate(
-            { userId: req.session.userId },
+        const user = await users.findOneAndUpdate(
+            { _id: req.session.userId },
             {
-                name: userData.name,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
                 email: userData.email,
-                studentId: userData.studentId,
-                nationalId: userData.nationalId,
-                sex: userData.sex
+                stuNumber: userData.studentId,
+                nationalCode: userData.nationalId,
+                gender: userData.sex
             },
             { new: true }
         );
@@ -123,30 +119,21 @@ module.exports.finalizeRegistration = async (req, res) => {
             });
         }
 
-        // Find user in database
-        const user = await creativeDay.findOne({ userId: req.session.userId });
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "کاربر یافت نشد"
-            });
-        }
+
 
         // Update user to mark registration as finalized
-        await creativeDay.updateOne(
-            { userId: req.session.userId },
-            {
-                registrationComplete: true,
-                registrationCompletedAt: new Date(),
-                gameTeamName: req.session.hasTeam || null,
-                contestTeamName: req.session.programmingTeamName || null
-            }
+        const user = await creativeDay.create({
+            userId: userId,
+            gameTeamName: "NOoooooo",
+            contestTeamName:"NOoooooo",
+            status:"pending",
+        }
         );
-
+        if (user){
         return res.status(200).json({
             success: true,
             message: "ثبت نام شما با موفقیت تکمیل شد"
-        });
+        });}
     } catch (error) {
         console.error('[finalizeRegistration] Error finalizing registration:', error);
         return res.status(500).json({
