@@ -47,7 +47,7 @@ const OTPVerification: React.FC = () => {
     }
 
   try{
-    const response = await fetch('https://www.api.bitok.ir/auth/sms/verify', {
+    const response = await fetch('http://localhost:3398/auth/sms/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phoneNumber, code: otpString })

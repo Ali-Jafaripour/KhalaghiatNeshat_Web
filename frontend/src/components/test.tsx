@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
+const MAX_CAPACITY = 300;
 
 const Test: React.FC = () => {
   const [count, setCount] = useState(0);
@@ -35,30 +36,48 @@ const Test: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
-      const animateCounter = () => {
-        const duration = 5000;
-        const startTime = performance.now();
-        const endCount = 300;
+    let endCount = MAX_CAPACITY;
+    let animationFrame: number;
 
-        const updateCounter = (currentTime: number) => {
-          const elapsedTime = currentTime - startTime;
-          const progress = Math.min(elapsedTime / duration, 1);
-          const currentCount = Math.ceil(progress * endCount); 
+    const fetchRegisteredCount = async () => {
+      try {
+        const res = await fetch('http://localhost:3398/creativeDay/count');
+        const data = await res.json();
+        const registered = data.count || 0;
+        endCount = Math.max(0, MAX_CAPACITY - registered);
+      } catch {
+        endCount = MAX_CAPACITY;
+      }
+      animateCounter(endCount);
+    };
 
-          setCount(currentCount);
-          setShowAnimation(progress > 0.85); 
+    const animateCounter = (endValue: number) => {
+      const duration = 2000;
+      const startTime = performance.now();
 
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          }
-        };
+      const updateCounter = (currentTime: number) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        const currentCount = Math.ceil(progress * endValue);
 
-        requestAnimationFrame(updateCounter);
+        setCount(currentCount);
+        setShowAnimation(progress > 0.85);
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(updateCounter);
+        }
       };
 
-      animateCounter();
+      animationFrame = requestAnimationFrame(updateCounter);
+    };
+
+    if (isVisible) {
+      fetchRegisteredCount();
     }
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
   }, [isVisible]);
 
   return (
@@ -66,7 +85,7 @@ const Test: React.FC = () => {
       <div>
         <h1 className="relative text-center z-30">
           <span className="count block lg:text-[50vh] text-[17vh]  text-primary-2 font-Potk z-30">{count}</span>
-          <p className='font-Potk text-primary-1'>تعداد ثبت نامی ها تا همین لحظه ! </p> 
+          <p className='font-Potk text-primary-1'>ظرفیت باقی‌مانده تا تکمیل ثبت‌نام!</p> 
         </h1>
         {showAnimation && (
           <DotLottieReact

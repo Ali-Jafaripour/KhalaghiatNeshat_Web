@@ -1,92 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from "clsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { useEffect } from "react";
 import CustomCheckbox from '../components/CustomCheckbox';
 import LottieIcon from "../Icon/LottieIcon.tsx"
 import Game from "../Icon/Game.json";
 
 const programmingMach: React.FC = () => {
 
- useEffect(() => {
+  useEffect(() => {
     document.documentElement.style.overflow = "hidden";
     return () => {
       document.documentElement.style.overflow = "auto"; 
     };
   }, []);
-// @ts-ignore
+  // @ts-ignore
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);   
-// @ts-ignore
+  // @ts-ignore
 
   const [isModalOpen, setIsModalOpen] = useState(false); // وضعیت باز بودن modal
   const [error, setError] = useState('');  
 
+  // مشابه Game.tsx از همان متغیرها استفاده می‌کنیم
+  const [participation, setParticipation] = useState(''); // 'no', 'noTeam', 'hasTeam'
   const [teamName, setTeamName] = useState('');
-
-  const [skipRegistration, setSkipRegistration] = useState(false);
-  
   const [isChecking, setIsChecking] = useState(false);
   
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const checkTeamName = async () => {
-    try {
+  // گرفتن مقادیر از صفحه قبل (Game.tsx)
+  useEffect(() => {
+    if (location.state) {
+      const { teamName: gameTeamName, participation: gameParticipation } = location.state;
+      
+      // اگر از صفحه قبل تیمی انتخاب شده بود، در اینجا هم نشان بده
+      if (gameTeamName) {
+        setTeamName(gameTeamName);
+        setParticipation('hasTeam');
+      }
+      
+      // اگر در بازی شرکت نمی‌کند، در اینجا هم شرکت نمی‌کند
+      if (gameParticipation === 'no') {
+        setParticipation('no');
+      }
+    }
+  }, [location.state]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    
+    // تبدیل انتخاب کاربر به مقادیر مناسب برای ذخیره
+    let programming = participation !== 'no';
+    let programmingTeamName = participation === 'hasTeam' ? teamName.trim() : null;
+
+    // اعتبارسنجی نام تیم
+    if (participation === 'hasTeam' && !teamName.trim()) {
+      setError('لطفاً نام تیم را وارد کنید');
+      return;
+    }
+
+    // اگر تیم دارد، ظرفیت را چک کن
+    if (participation === 'hasTeam') {
       setIsChecking(true);
-      const response = await fetch('https://www.api.bitok.ir/contest/getTeamName', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
+      try {
+        const response = await fetch('http://localhost:3398/creativeDay/contest/getContestTeamNameMember', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ teamName })
+        });
+        
+        const data = await response.json();
+        
+        if (!data.success || !data.isAvailable) {
+          setError(data.message || 'ظرفیت تیم تکمیل است');
+          setIsChecking(false);
+          return;
         }
+      } catch (error) {
+        setError('خطا در ارتباط با سرور');
+        setIsChecking(false);
+        return;
+      }
+    }
+
+    // ارسال اطلاعات به بک‌اند برای ذخیره در سشن
+    try {
+      const saveRes = await fetch('http://localhost:3398/creativeDay/contest/save-step', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ 
+          contest: programming, 
+          programmingTeamName 
+        }),
       });
       
-      const data = await response.json();
-      
-      if (data.success) {
-        if (data.isAvailable) {
-          return true;
-        } else {
-          setError('این تیم ظرفیت تکمیل است و نمی‌توانید به آن ملحق شوید');
-          return false;
-        }
-      } else {
-        setError(data.message || 'خطا در بررسی نام تیم');
-        return false;
+      if (!saveRes.ok) {
+        setError('خطا در ذخیره اطلاعات.');
+        return;
       }
+
+      // انتقال به صفحه بعدی
+      navigate("/dashboard", {
+        state: {
+          teamName: programmingTeamName,
+          participation
+        }
+      });
     } catch (error) {
       setError('خطا در ارتباط با سرور');
-      return false;
     } finally {
       setIsChecking(false);
     }
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (skipRegistration) {
-      navigate("/dashboard", { state: { teamName: null } });
-      return;
-    }
-
-    if (!teamName.trim()) {
-      setError('لطفاً نام تیم را وارد کنید');
-      setIsModalOpen(true);
-      return;
-    }
-
-    const isTeamAvailable = await checkTeamName();
-    if (!isTeamAvailable) {
-      return;
-    }
   
-    setError('');
-    navigate("/dashboard", { state: { teamName: teamName.trim() } });  
-  };
-  
-
-
   return (
     <div className="min-h-screen">
 
@@ -99,8 +129,6 @@ const programmingMach: React.FC = () => {
           {error && <p className="text-red-500 text-center mb-4 font-Peyda font-bold">{error}</p>}
       </div>
 
-
-
         <div className="z-20 flex flex-col gap-8 absolute right-[6.5%] lg:right-[30%]  top-[12%] lg:top-[16%]   w-[87%] lg:w-[40%] p-8 rounded-2xl  backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)] ">
             <h2 className="font-Potk text-primary-2 text-2xl font-semibold mt-1 mb-3 text-center"> فرم ثبت نام مسابقه برنامه نویســی </h2>
 
@@ -110,55 +138,66 @@ const programmingMach: React.FC = () => {
               autoplay
             />
 
-{/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
-{/* ------------------------------------------------------------  فرم ثبت نام   ----------------------------------------------------------- */}
-{/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex flex-col gap-2">
-                <label htmlFor="teamName" className="block font-Peyda text-sm font-medium text-primary-1 text-right mr-3">
-                  : نام تیم
-                </label>
-                <div className="relative"> {/* Add this wrapper div */}
-                  <input
-                    type="text"
-                    id="teamName"
-                    value={teamName}
-                    onChange={(e) => setTeamName(e.target.value)}
-                    className="w-full pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
-                      justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
-                      border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
-                      focus:border-primary-2 focus:border-[1px] focus:outline-none text-primary-1"
-                    placeholder=".نام تیم خود را وارد کنید"
-                  />
-                  <div className="absolute top-1/2 right-3 -translate-y-1/2"> 
-                    <LottieIcon animationData={Game} width={30} height={30} />
+                <CustomCheckbox
+                  id="noParticipation"
+                  checked={participation === 'no'}
+                  onChange={() => setParticipation('no')}
+                  label="قصد شرکت در مسابقه را ندارم"
+                />
+                <CustomCheckbox
+                  id="noTeam"
+                  checked={participation === 'noTeam'}
+                  onChange={() => setParticipation('noTeam')}
+                  label="قصد شرکت دارم ولی تیم ندارم"
+                />
+                <CustomCheckbox
+                  id="hasTeam"
+                  checked={participation === 'hasTeam'}
+                  onChange={() => setParticipation('hasTeam')}
+                  label="تیم دارم"
+                />
+                {participation === 'hasTeam' && (
+                  <div className="relative mt-2">
+                    <input
+                      type="text"
+                      id="teamName"
+                      value={teamName}
+                      onChange={e => setTeamName(e.target.value)}
+                      className="w-full pl-2 pr-12 py-[0.6rem] bg-white/5 rounded-lg flex items-center 
+                        justify-center shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
+                        border-2 border-white/10 font-Peyda placeholder:text-primary-placeholder text-right
+                        focus:border-primary-2 focus:border-[1px] focus:outline-none text-primary-1"
+                      placeholder=".نام تیم خود را وارد کنید"
+                    />
+                    <div className="absolute top-1/2 right-3 -translate-y-1/2"> 
+                      <LottieIcon animationData={Game} width={30} height={30} />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               
-              <div className="flex flex-row items-center gap-2 justify-center">
-                <CustomCheckbox
-                  id="skipRegistration"
-                  checked={skipRegistration}
-                  onChange={() => setSkipRegistration(!skipRegistration)}
-                  label="قصد شرکت در بازی را ندارم"
-                />
+              {error && <div className="text-red-500 text-center font-Peyda font-bold">{error}</div>}
+              
+              <div className="flex justify-center items-center">
+                <button 
+                  type="submit"
+                  className="z-10 lg:w-2/4 w-full font-Peyda h-fit inline-flex lg:px-3 px-4 lg:py-4 py-3 lg:text-xl lg:rounded-xl rounded-xl
+                    animate-shimmer items-center justify-center border border-primary-1
+                    bg-[linear-gradient(110deg,#101010,30%,#272727,50%,#101010)] 
+                    bg-[length:190%_100%] text-primary-1 font-semibold hover:opacity-70 hover:scale-105 
+                    focus:outline-none opacity-50 text-nowrap overflow-hidden 
+                    transition-transform duration-500"
+                  disabled={
+                    (participation === 'hasTeam' && !teamName.trim()) ||
+                    participation === ''
+                  }
+                >
+                  ثبت‌نام
+                </button>
               </div>
             </form>
-
-            <div className="flex justify-center items-center">
-              <button 
-                onClick={handleSubmit}
-                disabled={isChecking}
-                className={`z-10 lg:w-2/4 w-full font-Peyda h-fit inline-flex lg:px-3 px-4 lg:py-4 py-3 lg:text-xl lg:rounded-xl rounded-xl
-                  animate-shimmer items-center justify-center border border-primary-1
-                  bg-[linear-gradient(110deg,#101010,30%,#272727,50%,#101010)] 
-                  bg-[length:190%_100%] text-primary-1 font-semibold hover:opacity-70 hover:scale-105 
-                  focus:outline-none opacity-50 text-nowrap overflow-hidden 
-                  transition-transform duration-500 ${isChecking ? 'opacity-50 cursor-not-allowed' : ''}`}>
-                {isChecking ? 'در حال بررسی...' : (skipRegistration ? 'رفتــن به صفحـــه بعــدی' : 'ثـبت نـام کنیـد')}
-              </button>
-            </div>
         </div>
         <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(250%_150%_at_50%_20%,#0000_35%,#ff6000_180%)]   lg:[background:radial-gradient(150%_125%_at_50%_30%,#0000_40%,#ff6000_190%)]"></div>
 

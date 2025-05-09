@@ -64,11 +64,12 @@ const SignupForm: React.FC = () => {
     setError("");
     // Handle successful form submission (e.g., send data to API)
     try {
-      const response = await fetch("https://www.api.bitok.ir/auth/signup", {
+      const response = await fetch("http://localhost:3398/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify({ fullName: name , nationalCode: nationalId,email,gender:sex,stuNumber:studentId,phone:phoneNumber }),
       });
       const data = await response.json();

@@ -1,13 +1,13 @@
 const creativeDay = require('../models/creativeDay');
 
-module.exports.getGameTeamNameMember = async (req, res) => {
+module.exports.getContestTeamNameMember = async (req, res) => {
     try {
         const { teamName } = req.body;
-        console.log(`[getGameTeamNameMember] teamName received:`, teamName);
+        console.log(`[getContestTeamNameMember] teamName received:`, teamName);
 
         // Check if team name is provided
         if (!teamName) {
-            console.warn(`[getGameTeamNameMember] No teamName provided.`);
+            console.warn(`[getContestTeamNameMember] No teamName provided.`);
             return res.status(400).json({ 
                 success: false,
                 message: "لطفاً نام تیم را وارد کنید" 
@@ -15,25 +15,25 @@ module.exports.getGameTeamNameMember = async (req, res) => {
         }
 
         // شمارش تعداد اعضای تیم
-        const memberCount = await creativeDay.countDocuments({ gameTeamName: teamName });
-        console.log(`[getGameTeamNameMember] memberCount for '${teamName}':`, memberCount);
+        const memberCount = await creativeDay.countDocuments({ contestTeamName: teamName });
+        console.log(`[getContestTeamNameMember] memberCount for '${teamName}':`, memberCount);
 
         if (memberCount >= 4) {
-            console.info(`[getGameTeamNameMember] Team '${teamName}' is full.`);
+            console.info(`[getContestTeamNameMember] Team '${teamName}' is full.`);
             return res.status(200).json({
                 success: false,
                 message: "این تیم ظرفیت تکمیل است و نمی‌توانید به آن ملحق شوید",
                 isAvailable: false
             });
         } else if (memberCount > 0) {
-            console.info(`[getGameTeamNameMember] Team '${teamName}' exists and has capacity.`);
+            console.info(`[getContestTeamNameMember] Team '${teamName}' exists and has capacity.`);
             return res.status(200).json({
                 success: true,
                 message: "این تیم وجود دارد و ظرفیت دارد",
                 isAvailable: true
             });
         } else {
-            console.info(`[getGameTeamNameMember] Team '${teamName}' is available for creation.`);
+            console.info(`[getContestTeamNameMember] Team '${teamName}' is available for creation.`);
             return res.status(200).json({
                 success: true,
                 message: "نام تیم آزاد است و شما به عنوان سرگروه آن را ایجاد می‌کنید",
@@ -41,7 +41,7 @@ module.exports.getGameTeamNameMember = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error('[getGameTeamNameMember] Error checking team name:', error);
+        console.error('[getContestTeamNameMember] Error checking team name:', error);
         return res.status(500).json({ 
             success: false,
             message: "خطای سرور در بررسی نام تیم",
@@ -52,19 +52,19 @@ module.exports.getGameTeamNameMember = async (req, res) => {
 
 module.exports.saveStep = async (req, res) => {
     try {
-        const { game, hasTeam } = req.body;
-        console.log(`[saveStep] Saving to session: game=`, game, ', hasTeam=', hasTeam);
+        const { contest, programmingTeamName } = req.body;
+        console.log(`[contest saveStep] Saving to session: contest=`, contest, ', programmingTeamName=', programmingTeamName);
 
         // ذخیره اطلاعات در session
-        req.session.game = game;
-        req.session.hasTeam = hasTeam;
+        req.session.contest = contest;
+        req.session.programmingTeamName = programmingTeamName;
 
         return res.status(200).json({
             success: true,
             message: "اطلاعات با موفقیت در نشست ذخیره شد"
         });
     } catch (error) {
-        console.error('[saveStep] Error saving step:', error);
+        console.error('[contest saveStep] Error saving step:', error);
         return res.status(500).json({
             success: false,
             message: "خطای سرور در ذخیره اطلاعات نشست",

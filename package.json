@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/bitokss/Web-Site#readme",
   "dependencies": {
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.14.1",
     "react-intersection-observer": "^9.16.0"
   }
 }
