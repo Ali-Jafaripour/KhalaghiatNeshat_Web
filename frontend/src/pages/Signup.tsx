@@ -179,7 +179,7 @@ const SignupForm: React.FC = () => {
           {/* ------------------------------------------------------------  Student ID   ------------------------------------------------------------ */}
           {/* ---------------------------------------------------------------------------------------------------------------------------------------- */}
 
-          <div className="flex flex-row gap-4 justify-between">
+          <div className="flex flex-row gap-4 justify-between ">
             <div className="flex flex-col w-[50%] lg:w-[40%] gap-2">
               <label
                 htmlFor="sex"
@@ -189,11 +189,11 @@ const SignupForm: React.FC = () => {
                 : جنسیت{" "}
               </label>
               <div
-                className="flex gap-2 lg:gap-4 w-full lg:pl-6 pl-2 pr-2 py-[0.1rem] bg-white/5 rounded-lg items-center 
+                className="flex gap-1  w-full lg:pl-3 pl-1 pr-1 py-[0.1rem] bg-white/5 rounded-lg items-center 
                   justify-between shadow-[inset_0_0_9px_rgba(255,255,255,0.2)] 
                   border-2 border-white/10 font-Peyda"
               >
-                <div className="flex flex-row lg:w-[80%] justify-around gap-2 lg:gap-0">
+                <div className=" flex flex-row lg:w-[100%] justify-around items-center  gap-2">
                   <CustomCheckbox
                     id="female"
                     checked={sex === "female"}
@@ -207,10 +207,10 @@ const SignupForm: React.FC = () => {
                     label="آقا"
                   />
                 </div>
-
                 <div>
                   <LottieIcon animationData={Isex} width={40} height={40} />
                 </div>
+
               </div>
             </div>
 

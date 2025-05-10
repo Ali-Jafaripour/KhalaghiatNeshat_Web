@@ -11,21 +11,23 @@ interface CheckboxProps {
 const CustomCheckbox: React.FC<CheckboxProps> = ({ id, checked, onChange, label }) => {
   return (
     <StyledWrapper>
-      <div className="flex items-center gap-1 lg:gap-3">
-        <input
-          type="checkbox"
-          id={id}
-          checked={checked}
-          onChange={onChange}
-          style={{ display: 'none' }}
-        />
-        <label htmlFor={id} className="check w-3 lg:w-5">
-          <svg width="100%" height="100%" viewBox="0 0 18 18">
-            <path d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z" />
-            <polyline points="1 9 7 14 15 4" />
-          </svg>
-        </label>
-        <span className="text-primary-1 text-xs lg:text-base">{label}</span>
+      <div className="flex items-start flex-row-reverse  gap-1 lg:gap-2 ">
+        <div className="min-w-[20px] flex items-center justify-center pt-[2px]">
+          <input
+            type="checkbox"
+            id={id}
+            checked={checked}
+            onChange={onChange}
+            style={{ display: 'none' }}
+          />
+          <label htmlFor={id} className="check w-3 lg:w-5">
+            <svg width="100%" height="100%" viewBox="0 0 18 18">
+              <path d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z" />
+              <polyline points="1 9 7 14 15 4" />
+            </svg>
+          </label>
+        </div>
+        <span className="text-primary-1 text-sm lg:text-base">{label}</span>
       </div>
     </StyledWrapper>
   );

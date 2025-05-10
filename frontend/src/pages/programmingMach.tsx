@@ -129,7 +129,7 @@ const programmingMach: React.FC = () => {
           {error && <p className="text-red-500 text-center mb-4 font-Peyda font-bold">{error}</p>}
       </div>
 
-        <div className="z-20 flex flex-col gap-8 absolute right-[6.5%] lg:right-[30%]  top-[12%] lg:top-[16%]   w-[87%] lg:w-[40%] p-8 rounded-2xl  backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)] ">
+        <div className="z-20 flex flex-col gap-8 absolute right-[6.5%] lg:right-[30%] top-[8%] lg:top-[10%] w-[87%] lg:w-[40%] p-8 rounded-2xl backdrop-blur-0 bg-[#ffffff03] border border-white/20 shadow-[inset_0_0_18px_rgba(255,255,255,0.2)] ">
             <h2 className="font-Potk text-primary-2 text-2xl font-semibold mt-1 mb-3 text-center"> فرم ثبت نام مسابقه برنامه نویســی </h2>
 
             <DotLottieReact
@@ -139,7 +139,7 @@ const programmingMach: React.FC = () => {
             />
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4 justify-center">
                 <CustomCheckbox
                   id="noParticipation"
                   checked={participation === 'no'}
